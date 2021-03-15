@@ -2,76 +2,57 @@
 
 int get_next_line (int fd, char **line)
 {
-	int BUFFER_SIZE = 33;
-	static char *store[1024];
+	static char *store[MAX_LIMIT];
 	char buf[BUFFER_SIZE + 1];
-	int bytes_read;
+	int  bytesread;
+	char *newline;
 	char *tmp;
-	static char *buf_tmp;
-	char extra[BUFFER_SIZE + 1];
-	int i;
-	int j;
 
+	if (!line || BUFFER_SIZE <= 0)
+		return (-1);
+		
+	while (line && ((bytesread = read(fd, buf, BUFFER_SIZE)) > 0))
+	{
+		if (!store[fd])
+			store[fd] = ft_strnew(1);
+		buf[bytesread] = '\0';
+		tmp = ft_strjoin(store[fd], buf);
+		ft_strdel(&store[fd]);
+		store[fd] = tmp;
+		if ((newline = ft_strchr(store[fd], '\n')))
+			break;
+	}
 
-	if (fd < 0 || line == NULL)
+	if (bytesread < 0 || fd < 0 || fd == 1 || fd == 2 || fd >= MAX_LIMIT)
 		return (-1);
 
-	if (store[fd] != NULL && i > 0)
-		free(store[fd]);
-
-	if (buf_tmp != NULL)
-		store[fd] = ft_strdup(buf_tmp);
-
-	while (bytes_read && !(ft_strchr(buf, '\n')))
+	if (!bytesread && (store[fd] == NULL || *store[fd] == '\0'))
 	{
-		bytes_read = read(fd, buf, BUFFER_SIZE);
-		buf[bytes_read] = '\0';
-		if (store[fd] == NULL && bytes_read)
-			store[fd] = ft_strdup(buf);
-		else if (!(ft_strchr(buf, '\n')) && bytes_read)
-		{
-			tmp = ft_strjoin(store[fd], buf);
-			free(store[fd]);
-			store[fd] = tmp;
-		}
-		else
-		{
-			i = 0;
-			buf_tmp = (char *)malloc(sizeof(char) * BUFFER_SIZE);
-			while (buf[i] != '\n')
-			{
-				extra[i] = buf[i];
-				i++;
-			}  
-			extra[i++] = '\0';
-			j = 0;
-			while (i < BUFFER_SIZE)
-				buf_tmp[j++] = buf[i++];
-			buf_tmp[j] = '\0';
-			tmp = extra;
-			store[fd] = ft_strjoin(store[fd], tmp);		
-		}		
-		*line = store[fd];
-	}
-	if (!bytes_read && !*store[fd])
-	{
-		free(store[fd]);
-		*line = NULL;
+		ft_strdel(&store[fd]);
 		return (0);
 	}
+	
+	while ((newline = ft_strchr(store[fd], '\n')))
+	{
+		*newline++ = '\0';
+		*line = ft_strdup(store[fd]);
+		tmp = ft_strdup(newline);
+		ft_strdel(&store[fd]);
+		store[fd] = tmp;
+		return (1);
+	}
+	*line = ft_strdup(store[fd]);
+	ft_strdel(&store[fd]);
 	return (1);
 }
 
-int main (void)
-{
-	int 	fd;
-	char	*line;
-	int ret;
-
-	fd = open("text.txt", O_RDONLY);
-	while ((ret = get_next_line(fd, &line)) == 1)
-	{
-		printf("%s\n", line);
-	}
-	return (0);
-}
+//int main (void)
+//{
+//	int 	fd;
+//	char	*line;
+//
+//	fd = open("42_no_nl.txt", O_RDWR);
+//	get_next_line(fd, &line);
+//	printf("%s\n", line);
+//	return (0);
+//}

@@ -6,6 +6,12 @@
 #include <unistd.h> // read
 #include <stdlib.h>
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 2
+# endif
+
+# define MAX_LIMIT 4096
+
 int		get_next_line(int fd, char **line);
 char	*ft_strdup(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
