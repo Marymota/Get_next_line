@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"iosfwd": "c",
+		"*.tcc": "c",
+		"atomic": "c"
+	}
+}
