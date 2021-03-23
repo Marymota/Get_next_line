@@ -6,7 +6,7 @@
 /*   By: marmota <marmota@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:42:40 by marmota           #+#    #+#             */
-/*   Updated: 2021/03/21 16:42:41 by marmota          ###   ########.fr       */
+/*   Updated: 2021/03/22 23:53:30 by marmota          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlen(const char *s)
 {
-	int	i;
+	unsigned	i;
 
 	i = 0;
 	while (*s++)
@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *s)
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	size_t	i;
+	unsigned	i;
 
 	if (!src && !dst)
 		return (0);
@@ -43,8 +43,8 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 
 char	*ft_strdup(const char *s)
 {
-	int		len;
-	char	*str;
+	unsigned	len;
+	char		*str;
 
 	len = ft_strlen(s);
 	str = malloc(len + 1);
@@ -72,23 +72,23 @@ char	*ft_strchr(const char *s, int c)
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*strjoin;
-	char	*ret;
-	int		lens1;
-	int		lens2;
+	char			*s;
+	char			*ret;
+	unsigned int	l1;
+	unsigned int	l2;
 
 	if (!s1 || !s2)
 		return (ft_strdup(""));
-	lens1 = ft_strlen(s1);
-	lens2 = ft_strlen(s2);
-	strjoin = malloc(sizeof(char) * (lens1 + lens2 + 1));
-	if (!strjoin)
+	l1 = ft_strlen(s1);
+	l2 = ft_strlen(s2);
+	s = malloc(sizeof(char) * (l1 + l2 + 1));
+	if (!s)
 		return (0);
-	ret = strjoin;
-	while (lens1--)
-		*strjoin++ = *s1++;
-	while (lens2--)
-		*strjoin++ = *s2++;
-	*strjoin = 0;
+	ret = s;
+	while (l1--)
+		*s++ = *s1++;
+	while (l2--)
+		*s++ = *s2++;
+	*s = 0;
 	return (ret);
 }

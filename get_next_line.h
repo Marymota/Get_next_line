@@ -6,7 +6,7 @@
 /*   By: marmota <marmota@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:19:12 by marmota           #+#    #+#             */
-/*   Updated: 2021/03/21 17:08:04 by marmota          ###   ########.fr       */
+/*   Updated: 2021/03/22 17:29:34 by marmota          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <fcntl.h>
+
+# define FD_MAX 4096
 
 int		get_next_line(int fd, char **line);
 char	*ft_strdup(const char *s);
