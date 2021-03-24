@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marmota <marmota@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mmota <mmota@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/21 16:43:59 by marmota           #+#    #+#             */
-/*   Updated: 2021/03/21 16:54:28 by marmota          ###   ########.fr       */
+/*   Created: 2021/03/24 17:13:48 by mmota             #+#    #+#             */
+/*   Updated: 2021/03/24 17:13:52 by mmota            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <fcntl.h>
+
+# define FD_MAX 4096
 
 int		get_next_line(int fd, char **line);
 char	*ft_strdup(const char *s);

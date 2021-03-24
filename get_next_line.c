@@ -43,7 +43,7 @@ static int	save_line(int fd, char *buf, char **s)
 	return (0);
 }
 
-static int ret_eof(int fd, char **s, char **l)
+static int	ret_eof(int fd, char **s, char **l)
 {
 	if (!s[fd])
 		*l = ft_strdup("");
@@ -54,11 +54,11 @@ static int ret_eof(int fd, char **s, char **l)
 	return (0);
 }
 
-static int read_line(int fd, char **s, char **l)
+static int	read_line(int fd, char **s, char **l)
 {
-	int br; 
-	char *buf;
-	
+	int			br;
+	char		*buf;
+
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	while ((br = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
@@ -69,12 +69,12 @@ static int read_line(int fd, char **s, char **l)
 	free(buf);
 	if (br < 0)
 		return (-1);
-	if(!s[fd] || !ft_strchr(s[fd], '\n'))
+	if (!s[fd] || !ft_strchr(s[fd], '\n'))
 		return (ret_eof(fd, s, l));
-	return (ret_line(fd, s, l));	
+	return (ret_line(fd, s, l));
 }
 
-int	get_next_line (int fd, char **line)
+int			get_next_line(int fd, char **line)
 {
 	static char	*store[FD_MAX];
 
