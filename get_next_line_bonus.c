@@ -6,7 +6,7 @@
 /*   By: mmota <mmota@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 15:33:22 by marmota           #+#    #+#             */
-/*   Updated: 2021/03/24 17:14:35 by mmota            ###   ########.fr       */
+/*   Updated: 2021/04/20 15:39:32 by mmota            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,13 @@ static int	read_line(int fd, char **s, char **l)
 	char		*buf;
 
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	while ((br = read(fd, buf, BUFFER_SIZE)) > 0)
+	br = read(fd, buf, BUFFER_SIZE);
+	while (br > 0)
 	{
 		buf[br] = '\0';
 		if (save_line(fd, buf, s))
 			break ;
+		br = read(fd, buf, BUFFER_SIZE);
 	}
 	free(buf);
 	if (br < 0)
@@ -74,7 +76,7 @@ static int	read_line(int fd, char **s, char **l)
 	return (ret_line(fd, s, l));
 }
 
-int			get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	static char	*store[FD_MAX];
 

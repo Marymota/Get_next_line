@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marmota <marmota@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mmota <mmota@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:42:40 by marmota           #+#    #+#             */
-/*   Updated: 2021/03/22 23:53:30 by marmota          ###   ########.fr       */
+/*   Updated: 2021/04/20 14:56:20 by mmota            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlen(const char *s)
 {
-	unsigned	i;
+	unsigned int	i;
 
 	i = 0;
 	while (*s++)
@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *s)
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	unsigned	i;
+	unsigned int	i;
 
 	if (!src && !dst)
 		return (0);
@@ -43,8 +43,8 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 
 char	*ft_strdup(const char *s)
 {
-	unsigned	len;
-	char		*str;
+	unsigned int	len;
+	char			*str;
 
 	len = ft_strlen(s);
 	str = malloc(len + 1);
