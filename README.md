@@ -22,3 +22,7 @@ Additionally, memory allocation and deallocation is managed using malloc and fre
 
 ## Bonus Part
 `get_next_line()` is developed using only one static variable and can manage multiple file descriptors simultaneously.
+
+---
+# 42 School
+This project is an integral part of the curriculum at 42 Lisboa, emphasizing practical learning, collaboration, and problem-solving. It sets the stage for your journey into the world of programming, equipping you with essential skills and knowledge for future endeavors.
